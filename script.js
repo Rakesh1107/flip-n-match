@@ -42,7 +42,7 @@ class FlipNMatch {
 	}
 	startGame() {
 		this.cardToCheck = null;
-		this.totalClicks = 20;
+		this.totalClicks = 24;
 		this.timeRemaining = this.totalTime;
 		this.matchedCards = [];
 		this.busy = true;
