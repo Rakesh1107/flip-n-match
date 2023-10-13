@@ -41,8 +41,10 @@ class FlipNMatch {
 	  this.audioController = new AudioController();
 	}
 	startGame() {
+		const urlParams = new URLSearchParams(window.location.search);
+		const flips = urlParams.get('flips') === undefined ? 40 : urlParams.get('flips');
 		this.cardToCheck = null;
-		this.totalClicks = 40;
+		this.totalClicks = flips;
 		this.timeRemaining = this.totalTime;
 		this.matchedCards = [];
 		this.busy = true;
@@ -144,9 +146,11 @@ class FlipNMatch {
 }
 
 function ready() {
+	const urlParams = new URLSearchParams(window.location.search);
+	const time = urlParams.get('time') === undefined ? 60 : urlParams.get('time');
 	let overlays = Array.from(document.getElementsByClassName('overlay'));
 	let cards = Array.from(document.getElementsByClassName('card'));
-	let game = new FlipNMatch(60, cards);
+	let game = new FlipNMatch(time, cards);
 
 	overlays.forEach(overlay => {
 		overlay.addEventListener('click', () => {
